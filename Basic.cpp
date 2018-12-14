@@ -583,7 +583,7 @@ class node{
 		printf("key:%s value:%d\n",key.s+1,value);
 	}
 };
-node Q[1010];int Top;
+node Q[10100];int Top;
 class BlockLinkList{
 	public:
 	string F;//杈撳嚭鏂囦欢
@@ -1106,7 +1106,7 @@ class book{//涔﹀簱鍩烘湰鍗曚綅
 	bool operator==(book& c){
 		return !(*this!=c);
 	}
-}unknownn;
+}unknownn,q[300];int top=0;
 bool cmp2(book& a,book& b){return cmp(a.ISBN,b.ISBN)==-1;}
 BlockLinkList author_index,ISBN_index,name_index,keyword_index;
 
@@ -1286,10 +1286,8 @@ class BOOK{
 					c.display();
 				return ;
 			}
-			
-			int top=0;book* q=new book[110];
 			if(a.author_flag){
-				
+				top=0;
 				author_index.find(a.author);
 				for(int i=1;i<=Top;i++){
 					node b=Q[i];
@@ -1301,7 +1299,6 @@ class BOOK{
 					if(q[i]!=q[i-1])
 						q[i].display();
 				}
-				delete q;
 				return ;
 			}
 			if(a.name_flag){
@@ -1317,7 +1314,6 @@ class BOOK{
 					if(q[i]!=q[i-1])
 						q[i].display();
 				}
-				delete q;
 				return ;
 			}
 			top=0;
@@ -1332,7 +1328,7 @@ class BOOK{
 			for(int i=1;i<=top;i++){
 				if(q[i]!=q[i-1]) 
 					q[i].display();
-			}delete q;
+			}
 			return ;
 		}
 	}
