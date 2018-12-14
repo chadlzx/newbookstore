@@ -313,12 +313,14 @@ class INPUT{
 			}
 			else if(iden=="modify"){
 				while(true){
+					int shuangyin=0;
 					string tmp("");f=0;
 					for(;i<s.size();i++){
-						if(s[i]==' '&&f)break;
+						if(s[i]==' '&&f&&(shuangyin%2==0))break;
 						if(s[i]!=' ')f=1;
-						else continue;
+						else if(shuangyin%2==0)continue;
 						tmp+=s[i];
+						if(s[i]=='\"')shuangyin++;
 					}
 					if(tmp=="")break;
 					if(tmp[0]!='-')return WRONG;
@@ -414,12 +416,14 @@ class INPUT{
 			else if(iden=="show"){
 				int y=0;
 				while(++y){
+					int shuangyin=0;
 					string tmp("");f=0;
 					for(;i<s.size();i++){
-						if(s[i]==' '&&f)break;
+						if(s[i]==' '&&f&&(shuangyin%2==0))break;
 						if(s[i]!=' ')f=1;
-						else continue;
+						else if(shuangyin%2==0)continue;
 						tmp+=s[i];
+						if(s[i]=='\"')shuangyin++;
 					}
 					if(tmp=="")break;
 					if(tmp[0]!='-'){// handle show_finance
@@ -536,7 +540,7 @@ class INPUT{
 
 
 bool check(string s){//判断是否需初始匿若空，则返回1，否刿
-	ifstream it(s.c_str());
+	ifstream it(s.c_str(),ios::in|ios::binary);
 	if(!it)return 1;
 	it.seekg(0,ios::end);
 	if(it.tellg()==0){
@@ -579,13 +583,13 @@ class node{
 		printf("key:%s value:%d\n",key.s+1,value);
 	}
 };
-node Q[3300];int Top;
+node Q[10300];int Top;
 class BlockLinkList{
 	public:
 	string F;//输出文件
 	template<class T> 
 	T get(int location){//直接得到location位置的变
-		ifstream file(F.c_str());
+		ifstream file(F.c_str(),ios::binary|ios::in);
 		file.seekg(location);
 		T a;
 		file.read(reinterpret_cast<char *> (&a),sizeof(a));
@@ -597,27 +601,22 @@ class BlockLinkList{
 		node first=get<node>(begin.next);
 		return first.key;
 	}
-	void updata(Bignode& a){//更新文件
-		fstream file(F.c_str());
-		file.seekp(a.location);
-		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
-		file.close();
-	}
-	void updata(node& a){//更新文件
-		fstream file(F.c_str());
+	template<class T>
+	void updata(T& a){//更新文件
+		fstream file(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(a.location);
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
 		file.close();
 	}
 	void foundinend(Bignode& a){
-		fstream file(F.c_str());
+		fstream file(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(0,ios::end);
 		a.location=file.tellp();
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
 		file.close();
 	}
 	void foundinend(node& a){
-		fstream file(F.c_str());
+		fstream file(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(0,ios::end);
 		a.location=file.tellp();
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
@@ -667,6 +666,100 @@ class BlockLinkList{
 		node a=get<node>(x.node_list_begin);
 		getnext(a,a.key,1);
 	}
+	int get_node_number(Bignode& a){
+		if(a.a!=normal)return 0;
+		node x=get<node>(a.node_list_begin);
+		x=get<node>(x.next);
+		int sum=0;
+		while(x.a!=End){
+			sum++;
+			x=get<node>(x.next);
+		}
+		return sum;
+	}
+	void updata_head(node a){
+		while(a.a!=End){
+			a.head=get<node>(a.prev).head;
+			updata(a);
+			a=get<node>(a.next);
+		}
+	}
+	void split(Bignode a){
+		/*	node_type a;//当前点的类型
+		String key;int value;//权值键倿
+		int next,prev;//前后驱的位置
+		int location;//当前所处文件位罿
+		int head;*/
+		/*
+		node_type a;//类型
+		int node_number;//list的node数目
+		int next,prev;//前后块驱
+		int location;//所处文件位罿
+		int node_list_begin;//指向所属链表头
+		*/
+		
+		if(a.a!=normal)return ;
+		Bignode next_Bignode=get<Bignode>(a.next);
+		Bignode new_Bignode;
+		foundinend(new_Bignode);
+		new_Bignode.a=normal;
+		new_Bignode.prev=a.location;
+		new_Bignode.next=next_Bignode.location;
+		
+		next_Bignode.prev=new_Bignode.location;
+		a.next=new_Bignode.location;
+		
+		
+		
+		int number=a.node_number/2;
+		int sum=0;
+		node x=get<node>(a.node_list_begin);
+		
+		x=get<node>(x.next);
+		for(int i=1;i<=number;i++)
+			x=get<node>(x.next);
+		node y=get<node>(x.next);
+		
+		node new_end_node,new_begin_node;
+		foundinend(new_begin_node);
+		foundinend(new_end_node);
+		
+		new_begin_node.a=Begin;
+		new_end_node.a=End;
+		
+		new_begin_node.next=y.location;
+		new_begin_node.head=new_Bignode.location;
+		y.prev=new_begin_node.location;
+		updata_head(y);
+		
+		x.next=new_end_node.location;
+		new_end_node.prev=x.location;
+		
+		new_Bignode.node_list_begin=new_begin_node.location;
+		
+		new_Bignode.node_number=get_node_number(new_Bignode);
+		a.node_number=get_node_number(a);
+		
+		
+		updata(a);updata(next_Bignode);updata(new_Bignode);
+		updata(x);updata(y);updata(new_begin_node);updata(new_end_node);
+	}
+	void updata(){
+		Bignode x=get<Bignode>(0);
+		x=get<Bignode>(x.next);
+		while(x.a!=End){
+			Bignode nex=get<Bignode>(x.next);
+			if(x.node_number>2*block){
+				split(x);
+				nex=get<Bignode>(x.next);
+			}
+			x=nex;
+		}
+	}
+	
+	
+	
+	
 	node find(String key){
 		Bignode x=get<Bignode>(0);
 		x=get<Bignode>(x.next);
@@ -695,7 +788,7 @@ class BlockLinkList{
 	void initialization(string s){
 		F=s;
 		if(!check(s))return;
-		ofstream file(F.c_str());
+		ofstream file(F.c_str(),ios::binary|ios::out);
 		file.close();
 		
 		Bignode x,y,z;
@@ -787,21 +880,21 @@ class USER{//用户信息
 	user_node now;//当前用户
 	template<class T>
 	void updata(T& a){//更新文件
-		fstream file(F.c_str());
+		fstream file(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(a.location);
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
 		file.close();
 	}
 	template<class T>//在文件尾创建一个新类型，并返回其位罿
 	void foundinend(T& a){
-		fstream file(F.c_str());
+		fstream file(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(0,ios::end);
 		a.location=file.tellp();
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
 		file.close();
 	}
 	user_node get(int location){
-		fstream file(F.c_str());
+		fstream file(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekg(location);
 		user_node a;
 		file.read(reinterpret_cast<char *> (&a),sizeof(a));
@@ -812,7 +905,7 @@ class USER{//用户信息
 	void init(int x){
 		F="user.txt";
 		if(check(F)){
-			ofstream file(F.c_str());
+			ofstream file(F.c_str(),ios::out|ios::binary);
 			file.close();
 		}
 		USER_index.initialization("USER_index.txt");
@@ -888,13 +981,13 @@ class LOG{
 	string F;
 	int sum,linkk[2];
 	int getsum(){
-		fstream file(F.c_str());
+		fstream file(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekg(0,ios::end);
 		return file.tellg();
 	}
 	template<class T>
 	T get(int location){//直接得到location位置的变釿相对于最后的位置
-		ifstream file(F.c_str());
+		ifstream file(F.c_str(),ios::in|ios::binary);
 		file.seekg(location);
 		T a;
 		file.read(reinterpret_cast<char *> (&a),sizeof(a));
@@ -903,7 +996,7 @@ class LOG{
 	}
 	template<class T>
 	void foundinend(T& a){
-		fstream file(F.c_str());
+		fstream file(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(0,ios::end);
 		a.location=file.tellp();
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
@@ -914,21 +1007,21 @@ class LOG{
 		if(check(F)){
 			sum=0;
 			linkk[0]=0;linkk[1]=0;
-			ofstream file(F.c_str());
+			ofstream file(F.c_str(),ios::out|ios::binary);
 			file.write(reinterpret_cast<const char *> (&sum),sizeof(sum));
 			file.write(reinterpret_cast<const char *> (&linkk[0]),sizeof(linkk[0]));
 			file.write(reinterpret_cast<const char *> (&linkk[0]),sizeof(linkk[1]));
 			file.close();
 		}
 		else {
-			ifstream file(F.c_str());
+			ifstream file(F.c_str(),ios::in|ios::binary);
 			file.read(reinterpret_cast<char *> (&sum),sizeof(sum));
 			file.read(reinterpret_cast<char *> (&linkk[0]),sizeof(linkk[0]));
 			file.read(reinterpret_cast<char *> (&linkk[1]),sizeof(linkk[1]));
 		}
 	}
 	void updata(int& value,int location){
-		fstream file(F.c_str());
+		fstream file(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(location);
 		file.write(reinterpret_cast<char *> (&value),sizeof(value));
 		file.close();
@@ -1015,21 +1108,21 @@ class BOOK{
 	book now;bool select_flag;
 	template<class T>
 	void updata(T& a){//更新文件
-		fstream file(F.c_str());
+		fstream file(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(a.location);
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
 		file.close();
 	}
-	template<class T>//在文件尾创建一个新类型，并返回其位罿
+	template<class T>//在文件尾创建一个新类型，并返回其位
 	void foundinend(T& a){
-		fstream file(F.c_str());
+		fstream file(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(0,ios::end);
 		a.location=file.tellp();
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
 		file.close();
 	}
 	book get(int location){
-		fstream file(F.c_str());
+		fstream file(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekg(location);
 		book a;
 		file.read(reinterpret_cast<char *> (&a),sizeof(a));
@@ -1039,7 +1132,7 @@ class BOOK{
 	void init(int flag){
 		F="book.txt";
 		if(check(F)){
-			ofstream file(F.c_str());
+			ofstream file(F.c_str(),ios::out|ios::binary);
 			file.close();
 		}
 		author_index.initialization((string)("author_index.txt"));
@@ -1365,18 +1458,18 @@ void init(){
 				BOOK_it.buy(ISBN,quantity);
 				break;
 			case (WRONG):
-		//		cout<<endl;
+				//cout<<endl;
 				printf("Invalid\n");
-		//		cout<<(String)s<<endl<<endl;
-		//		sum++;
+				//cout<<s<<endl;
+				//sum++;
 				break;
 			}
 		}
 		catch(...){
-		//	cout<<endl;
+			//cout<<endl;
 			printf("Invalid\n");
-		//	cout<<(String)s<<endl<<endl;
-		//	sum++;
+			//cout<<s<<endl;
+			//sum++;
 		}
 	}
 	check_load.close();
