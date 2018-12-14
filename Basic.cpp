@@ -583,7 +583,7 @@ class node{
 		printf("key:%s value:%d\n",key.s+1,value);
 	}
 };
-node Q[10100];int Top;
+node Q[101];int Top;
 class BlockLinkList{
 	public:
 	string F;//鏉堟挸鍤弬鍥︽
@@ -1318,7 +1318,6 @@ class BOOK{
 			}
 			top=0;
 			keyword_index.find(a.keyword[1]);
-			//printf("%s\n",a.keyword[1].s+1);
 			for(int i=1;i<=Top;i++){
 				node b=Q[i];
 				book c=get(b.value);
@@ -1373,24 +1372,17 @@ void init(){
 	int sum=0;
 	while(true){
 		sum++;
-		//ISBN_index.display();
 		if(flag)getline(check_load,s);
 		else getline(cin,s);
-		//cout<<s<<endl;
-		//if(sum==70){
-		//	sum=1;
-		//}
 		if(s.size()==0){continue;}
 		INPUT a;
 		TYPE aaa=a.input(s);
-		//cout<<s<<endl;
 		String User_id,Passwd,Name,Old_passwd;int pri;
 		String ISBN,author,keyword,price;
 		book c=unknownn;double cost=0;int quantity=0;int time=0;
 		try{
 		switch (aaa){
 			case (EXIT):
-				//cout<<sum<<endl;
 				exit(0);
 				break;
 			case (SU):
@@ -1460,32 +1452,23 @@ void init(){
 				BOOK_it.show_finance(time);
 				break;
 			case (BUY):
-				//USER_it.now.display();
 				if(USER_it.now.pri==0)throw 1;
 				ISBN=a.ISBN;
 				quantity=a.quantity;
 				BOOK_it.buy(ISBN,quantity);
 				break;
 			case (WRONG):
-				//cout<<endl;
 				printf("Invalid\n");
-				//cout<<s<<endl;
-				//sum++;
 				break;
 			}
 		}
 		catch(...){
-			//cout<<endl;
 			printf("Invalid\n");
-			//cout<<s<<endl;
-			//sum++;
 		}
 	}
 	check_load.close();
-	//cout<<sum<<endl;
 }
 int main(){
-	//freopen("chad.out","w",stdout);
 	init();
 	return 0;
 }
