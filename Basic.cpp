@@ -63,7 +63,7 @@ report myself #3閿涙俺绻戦崶鐐叉喅瀹搞儴鍤滃杈╂畱閹垮秳�
 using namespace std;
 
 struct String{//娑撯偓娑擃亝鏌婇惃鍕暰闂€绺畉ring 
-	char s[32];
+	char s[65];
 	char& operator[](int b){return s[b];}
 	friend int cmp(String a,String b){
 		for(int i=1;;i++){
@@ -126,13 +126,13 @@ int StringToInterger(string s){
 }
 class INPUT{
 	public:
-	char user_id[20];
-	char passwd[20];
+	char user_id[35];
+	char passwd[35];
 	char name[35];
-	char old_passwd[20];
-	string keyword[5];
-	char ISBN[20];
-	char author[22];
+	char old_passwd[35];
+	string keyword[20];
+	char ISBN[35];
+	char author[35];
 	int quantity,time;
 	double price,cost_price;
 	int permission;
@@ -583,7 +583,7 @@ class node{
 		printf("key:%s value:%d\n",key.s+1,value);
 	}
 };
-node Q[110];int Top;
+node Q[10];int Top;
 class BlockLinkList{
 	public:
 	string F;//鏉堟挸鍤弬鍥︽
@@ -1106,7 +1106,7 @@ class book{//娑旓箑绨遍崺鐑樻拱閸楁洑缍?
 	bool operator==(book& c){
 		return !(*this!=c);
 	}
-}unknownn,q[300];int top=0;
+}unknownn,q[30];int top=0;
 bool cmp2(book& a,book& b){return cmp(a.ISBN,b.ISBN)==-1;}
 BlockLinkList author_index,ISBN_index,name_index,keyword_index;
 
