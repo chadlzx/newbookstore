@@ -63,7 +63,7 @@ report myself #3閿涙俺绻戦崶鐐叉喅瀹搞儴鍤滃杈╂畱閹垮秳�
 using namespace std;
 
 struct String{//娑撯偓娑擃亝鏌婇惃鍕暰闂€绺畉ring 
-	char s[65];
+	char s[35];
 	char& operator[](int b){return s[b];}
 	friend int cmp(String a,String b){
 		for(int i=1;;i++){
@@ -104,10 +104,6 @@ enum TYPE{
 	EXIT=1,SU,logout,USERADD,REGISTER,DELETE,PASSWD,SELECT,MODIFY,IMPORT,SHOW,SHOW_FINANCE,BUY,
 	REPORT_FINANCE,REPORT_IMPLOYEE,REPORT_MYSELY,LOG,WRONG
 };
-string TYPE_NAME[]={
-	"exit","su","logout","useradd","register","delete","passwd","select","modify","import","show","buy","report","log",
-	"report finance","report imployee","log","report myself"
-};
 bool check_empty(string s,int b){//濡偓閺屻儰绮燽娴ｅ秶鐤嗗鈧慨绺弰顖氭儊娑撹櫣鈹栨稉?
 	for(int i=b;i<s.size();i++)if(s[i]!=' ')return 0;
 	return 1;
@@ -126,13 +122,13 @@ int StringToInterger(string s){
 }
 class INPUT{
 	public:
-	char user_id[35];
-	char passwd[35];
-	char name[35];
-	char old_passwd[35];
-	string keyword[20];
-	char ISBN[35];
-	char author[35];
+	char user_id[23];
+	char passwd[23];
+	char name[32];
+	char old_passwd[23];
+	string keyword[10];
+	char ISBN[23];
+	char author[23];
 	int quantity,time;
 	double price,cost_price;
 	int permission;
@@ -1106,7 +1102,7 @@ class book{//娑旓箑绨遍崺鐑樻拱閸楁洑缍?
 	bool operator==(book& c){
 		return !(*this!=c);
 	}
-}unknownn,q[30];int top=0;
+}unknownn,q[10];int top=0;
 bool cmp2(book& a,book& b){return cmp(a.ISBN,b.ISBN)==-1;}
 BlockLinkList author_index,ISBN_index,name_index,keyword_index;
 
