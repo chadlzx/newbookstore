@@ -1,5 +1,5 @@
-Basic: Basic.cpp
-	g++ -g Basic.cpp -o Basic
+code: Basic.cpp
+	g++ -g Basic.cpp -o code
 
 
 
