@@ -63,7 +63,7 @@ report myself #3閿涙俺绻戦崶鐐叉喅瀹搞儴鍤滃杈╂畱閹垮秳�
 using namespace std;
 
 struct String{//娑撯偓娑擃亝鏌婇惃鍕暰闂€绺畉ring 
-	char s[30];
+	char s[32];
 	char& operator[](int b){return s[b];}
 	friend int cmp(String a,String b){
 		for(int i=1;;i++){
@@ -122,13 +122,13 @@ int StringToInterger(string s){
 }
 class INPUT{
 	public:
-	char user_id[20];
-	char passwd[20];
-	char name[30];
-	char old_passwd[20];
+	char user_id[22];
+	char passwd[22];
+	char name[32];
+	char old_passwd[22];
 	string keyword[5];
-	char ISBN[20];
-	char author[20];
+	char ISBN[22];
+	char author[22];
 	int quantity,time;
 	double price,cost_price;
 	int permission;
