@@ -63,7 +63,7 @@ report myself #3：返回员工自己的操作记录，格式自宿
 using namespace std;
 
 struct String{//一个新的定长string 
-	char s[61];
+	char s[30];
 	char& operator[](int b){return s[b];}
 	friend int cmp(String a,String b){
 		for(int i=1;;i++){
@@ -128,7 +128,7 @@ class INPUT{
 	public:
 	char user_id[35];
 	char passwd[35];
-	char name[110];
+	char name[35];
 	char old_passwd[35];
 	string keyword[35];
 	char ISBN[35];
@@ -679,13 +679,15 @@ class BlockLinkList{
 		return sum;
 	}
 	void updata_head(node a){
-		while(a.a!=End){
-			a.head=get<node>(a.prev).head;
-			updata(a);
-			a=get<node>(a.next);
+		node x=a;
+		while(true){
+			x.head=get<node>(x.prev).head;
+			updata(x);
+			if(x.a==End)break;
+			x=get<node>(x.next);
 		}
 	}
-	void split(Bignode a){
+	void split(Bignode& a){
 		/*	node_type a;//当前点的类型
 		String key;int value;//权值键倿
 		int next,prev;//前后驱的位置
@@ -731,6 +733,7 @@ class BlockLinkList{
 		new_begin_node.next=y.location;
 		new_begin_node.head=new_Bignode.location;
 		y.prev=new_begin_node.location;
+		y.head=new_Bignode.location;
 		updata_head(y);
 		
 		x.next=new_end_node.location;
@@ -738,23 +741,22 @@ class BlockLinkList{
 		
 		new_Bignode.node_list_begin=new_begin_node.location;
 		
-		new_Bignode.node_number=get_node_number(new_Bignode);
-		a.node_number=get_node_number(a);
-		
 		
 		updata(a);updata(next_Bignode);updata(new_Bignode);
 		updata(x);updata(y);updata(new_begin_node);updata(new_end_node);
+		
+		new_Bignode.node_number=get_node_number(new_Bignode);
+		a.node_number=get_node_number(a);
+		
+		updata(a);updata(next_Bignode);
 	}
 	void updata(){
 		Bignode x=get<Bignode>(0);
 		x=get<Bignode>(x.next);
 		while(x.a!=End){
-			Bignode nex=get<Bignode>(x.next);
-			if(x.node_number>2*block){
+			if(x.node_number>2*block)
 				split(x);
-				nex=get<Bignode>(x.next);
-			}
-			x=nex;
+			x=get<Bignode>(x.next);
 		}
 	}
 	
@@ -836,6 +838,7 @@ class BlockLinkList{
 		Bignode c=get<Bignode>(y.head);
 		c.node_number++;
 		updata(c);
+		updata();
 	}
 	
 	void display(){
@@ -1374,13 +1377,17 @@ void init(){
 	int sum=0;
 	while(true){
 		sum++;
-		//keyword_index.display();
+		//ISBN_index.display();
 		if(flag)getline(check_load,s);
 		else getline(cin,s);
 		//cout<<s<<endl;
+		if(sum==70){
+			sum=1;
+		}
 		if(s.size()==0){continue;}
 		INPUT a;
 		TYPE aaa=a.input(s);
+		//cout<<s<<endl;
 		String User_id,Passwd,Name,Old_passwd;int pri;
 		String ISBN,author,keyword,price;
 		book c=unknownn;double cost=0;int quantity=0;int time=0;
