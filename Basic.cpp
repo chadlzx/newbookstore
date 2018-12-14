@@ -2,62 +2,62 @@
 
 using namespace std;
 /*
-author: chad 柳志�?
+author: chad 柳志轿
 student id: 518030910426 
 class type: class A
 class id: F1803017
 */
 
 /*
-整体设计思路�?
+整体设计思路＿
 首先，两种模式如何处理：
-	先进行load，若存在command.txt,直接读取命令�?
-	若不存在，设置程序员界面和普通界面（用户友好）�?
-第一次启动，创建 user 文件，创建书目订单日志管理等文件，初始条数赋�?
-	user 新创�?root 用户友好）�?
+	先进行load，若存在command.txt,直接读取命令〿
+	若不存在，设置程序员界面和普通界面（用户友好）〿
+第一次启动，创建 user 文件，创建书目订单日志管理等文件，初始条数赋丿
+	user 新创廿root 用户友好）〿
 对于合法性上，每次输出Invalid\n
 
 用户权限上，老板，员工，顾客，未登录 7310
 
 load [file] #7 加载
-exit #0 退�?
+exit #0 退凿
 su [user] [passwd] #0 登录
-logout #1  变为未登�?
-useradd [user‐id] [passwd] [7/3/1] [name] #3：增加一个指定权限的用户，不能创建不小于自己权限的账�?
+logout #1  变为未登彿
+useradd [user‐id] [passwd] [7/3/1] [name] #3：增加一个指定权限的用户，不能创建不小于自己权限的账房
 register [user‐id] [passwd] [name] #0：注册一个带有这些信息的权限1用户
 delete [user‐id] #7：删除某用户
-passwd [user‐id] [old‐passwd(if not root)] [new‐passwd] #1：root不需要填写旧密码，其余账户需�?
+passwd [user‐id] [old‐passwd(if not root)] [new‐passwd] #1：root不需要填写旧密码，其余账户需覿
 
-[user-id] �?[passwd] 包含连续无空格的数字字母下划线，不超�?0个字�?
-[name] 中不含空格，不超�?0个汉�?30个字�?
+[user-id] 咿[passwd] 包含连续无空格的数字字母下划线，不超迿0个字笿
+[name] 中不含空格，不超迿0个汉孿30个字芿
 
 select [ISBN]
 #3：选定ISBN为指定值的图书，若不存在则创建该ISBN的书并将其余信息留空等待modify进行填写
 modify ‐ISBN=[ISBN] ‐name=[name] ‐author=[author] ‐keyword=[keyword] ‐price=[price]
-#3：参数可省略，也不要求输入顺序，会更新（替换而非添加）上次选中的书至新的信�?
+#3：参数可省略，也不要求输入顺序，会更新（替换而非添加）上次选中的书至新的信恿
 import [quantity] [cost_price(in total)]
-#3：将上次选中的书以总共[cost_price]的价格进[quantity]�?
+#3：将上次选中的书以总共[cost_price]的价格进[quantity]朿
 show ‐ISBN=[ISBN] ‐name=[name] ‐author=[author] ‐keyword=[keyword]
-#1：参数可省略，也不要求输入顺序，将匹配的图书以ISBN号排序输出，需要注意该命令关键字项只支持单关键�?
+#1：参数可省略，也不要求输入顺序，将匹配的图书以ISBN号排序输出，需要注意该命令关键字项只支持单关键孿
 show finance [time]
-#7：time项省略时，输出总的收入与支出；否则输出近[time]次进货、卖出操作（分别算一次）的收入支出�?
-buy [ISBN] [quantity] #1：购买该ISBN号的图书[quantity]�?
+#7：time项省略时，输出总的收入与支出；否则输出近[time]次进货、卖出操作（分别算一次）的收入支出〿
+buy [ISBN] [quantity] #1：购买该ISBN号的图书[quantity]朿
 
-[ISBN] 为不超过20位的连续字符�?
-[name] �?[author] 被双引号包起来（不含双引号），保�?
-本身内容没有双引�?
-内容不超�?0个汉�?
-[keyword] 整体被双引号包起来（不含双引号），关键字之间 | (竖线)隔开，保�?
+[ISBN] 为不超过20位的连续字符丿
+[name] 咿[author] 被双引号包起来（不含双引号），保诿
+本身内容没有双引叿
+内容不超迿0个汉孿
+[keyword] 整体被双引号包起来（不含双引号），关键字之间 | (竖线)隔开，保诿
 每个关键字本身内容无引号以及空格
-内容总共不超�?0个汉�?
-[quantity] 为整数（<100000�?
-对于show操作，输出格式为：每行一本，所有信息项目间�?\t 隔开，价格保留两位，库存后加”本“字，如
+内容总共不超迿0个汉孿
+[quantity] 为整数（<100000＿
+对于show操作，输出格式为：每行一本，所有信息项目间仿\t 隔开，价格保留两位，库存后加”本“字，如
 
 
-report finance #7：会生成一张赏心悦目的财务报表，格式自�?
+report finance #7：会生成一张赏心悦目的财务报表，格式自宿
 report employee #7：会生成一张赏心悦目的员工工作情况表，记录其操作，格式自定
 log #7：会返回赏心悦目的日志记录，包括系统操作类的谁干了什么，以及财务上每一笔交易情况，格式自定
-report myself #3：返回员工自己的操作记录，格式自�?
+report myself #3：返回员工自己的操作记录，格式自宿
 */
 
 using namespace std;
@@ -96,7 +96,7 @@ struct String{//一个新的定长string
 bool isempty(String& a){
 	return cmp(a,(String)(string)(""))==0;
 }
-//读入及其检�?
+//读入及其检柿
 //initialization
 const int block=100;
 enum node_type{Begin=1,End,normal};
@@ -108,7 +108,7 @@ string TYPE_NAME[]={
 	"exit","su","logout","useradd","register","delete","passwd","select","modify","import","show","buy","report","log",
 	"report finance","report imployee","log","report myself"
 };
-bool check_empty(string s,int b){//检查从b位置开�?s是否为空�?
+bool check_empty(string s,int b){//检查从b位置开姿s是否为空丿
 	for(int i=b;i<s.size();i++)if(s[i]!=' ')return 0;
 	return 1;
 }
@@ -520,7 +520,7 @@ class INPUT{
 				StringToChar(tmp,ISBN);
 				return BUY;
 			}
-			//暂时不需�?
+			//暂时不需覿
 			else if(iden=="report"){
 				return REPORT_FINANCE;
 			}
@@ -535,7 +535,7 @@ class INPUT{
 
 
 
-bool check(string s){//判断是否需初始�?若空，则返回1，否�?
+bool check(string s){//判断是否需初始匿若空，则返回1，否刿
 	ifstream it(s.c_str());
 	if(!it)return 1;
 	it.seekg(0,ios::end);
@@ -550,7 +550,7 @@ class Bignode{
 	node_type a;//类型
 	int node_number;//list的node数目
 	int next,prev;//前后块驱
-	int location;//所处文件位�?
+	int location;//所处文件位罿
 	int node_list_begin;//指向所属链表头
 	Bignode(){
 		a=normal;
@@ -564,10 +564,10 @@ class Bignode{
 class node{
 	public:
 	node_type a;//当前点的类型
-	String key;int value;//权值键�?
+	String key;int value;//权值键倿
 	int next,prev;//前后驱的位置
-	int location;//当前所处文件位�?
-	int head;//所对应的bignode 的位�?
+	int location;//当前所处文件位罿
+	int head;//所对应的bignode 的位罿
 	node(){
 		a=normal;
 		key=(String)(string)("");
@@ -579,8 +579,8 @@ class node{
 		printf("key:%s value:%d\n",key.s+1,value);
 	}
 };
+node Q[3300];int Top;
 class BlockLinkList{
-	
 	public:
 	string F;//输出文件
 	template<class T> 
@@ -592,7 +592,7 @@ class BlockLinkList{
 		file.close();
 		return a;
 	}
-	String get_begin_node(Bignode& h){//得到h的第一个key�?
+	String get_begin_node(Bignode& h){//得到h的第一个key倿
 		node begin=get<node>(h.node_list_begin);
 		node first=get<node>(begin.next);
 		return first.key;
@@ -623,7 +623,6 @@ class BlockLinkList{
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
 		file.close();
 	}
-	node q[110];int top;
 	node getend(node a){
 		while(a.a!=End)
 			a=get<node>(a.next);
@@ -640,7 +639,7 @@ class BlockLinkList{
 		if(a.a!=normal)return ;
 		
 		if(cmp(a.key,key)==0){
-			q[++top]=a;
+			Q[++Top]=a;
 			getprev(get<node>(a.prev),key);
 		}
 		return ;
@@ -656,13 +655,13 @@ class BlockLinkList{
 		if(a.a==Begin)a=get<node>(a.next);
 		if(a.a!=normal)return ;
 		if(cmp(a.key,key)==0||flag){
-			q[++top]=a;
+			Q[++Top]=a;
 			getnext(get<node>(a.next),key,flag);
 		}
 		return ;
 	}
 	void bianli(){
-		top=0;
+		Top=0;
 		Bignode x=get<Bignode>(0);
 		x=get<Bignode>(x.next);
 		node a=get<node>(x.node_list_begin);
@@ -686,7 +685,7 @@ class BlockLinkList{
 		}
 		
 		if(cmp(y.key,key)==0){
-			top=0;
+			Top=0;
 			getprev(y,key);
 			getnext(y,key);
 			return y;
@@ -781,7 +780,7 @@ class user_node{
 	void display(){
 		printf("%s %s %s %d %d\n",user_id.s+1,name.s+1,passwd.s+1,pri,location);
 	}
-}unknown;//未登录用�?
+}unknown;//未登录用房
 class USER{//用户信息
 	public:
 	string F;
@@ -793,7 +792,7 @@ class USER{//用户信息
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
 		file.close();
 	}
-	template<class T>//在文件尾创建一个新类型，并返回其位�?
+	template<class T>//在文件尾创建一个新类型，并返回其位罿
 	void foundinend(T& a){
 		fstream file(F.c_str());
 		file.seekp(0,ios::end);
@@ -894,7 +893,7 @@ class LOG{
 		return file.tellg();
 	}
 	template<class T>
-	T get(int location){//直接得到location位置的变�?相对于最后的位置
+	T get(int location){//直接得到location位置的变釿相对于最后的位置
 		ifstream file(F.c_str());
 		file.seekg(location);
 		T a;
@@ -948,7 +947,7 @@ class LOG{
 	}
 	
 	pair<double,double> 
-		find(int key){//找到最近key次的进货或者卖出操�?
+		find(int key){//找到最近key次的进货或者卖出操使
 		if(!key)key=sum;
 		int t=sum-key+1,kin=sum;
 		double income=0,pay=0;
@@ -995,8 +994,7 @@ class book{//书库基本单位
 			}
 		}
 		printf("\t%.2lf\t",price);
-		char ss[4]={-26,-100,-24,'\0'};
-		printf("%d本\n",quantity,ss);
+		printf("%d本\n",quantity);
 	}
 	bool operator!=(book& c){
 		if(cmp(ISBN,c.ISBN)||cmp(author,c.author)||cmp(name,c.name)||cmp(keyword[1],c.keyword[1]))return 1;
@@ -1007,7 +1005,7 @@ class book{//书库基本单位
 	bool operator==(book& c){
 		return !(*this!=c);
 	}
-}unknownn,q[1200];int top=0;
+}unknownn;
 bool cmp2(book& a,book& b){return cmp(a.ISBN,b.ISBN)==-1;}
 BlockLinkList author_index,ISBN_index,name_index,keyword_index;
 
@@ -1022,7 +1020,7 @@ class BOOK{
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
 		file.close();
 	}
-	template<class T>//在文件尾创建一个新类型，并返回其位�?
+	template<class T>//在文件尾创建一个新类型，并返回其位罿
 	void foundinend(T& a){
 		fstream file(F.c_str());
 		file.seekp(0,ios::end);
@@ -1051,7 +1049,7 @@ class BOOK{
 		now=unknownn;
 		select_flag=0;
 	}
-	void erase(book& a,int flag){//删除一本书的索�?
+	void erase(book& a,int flag){//删除一本书的索弿
 	
 		if(flag==0){
 			if(isempty(a.ISBN))return ;
@@ -1067,10 +1065,10 @@ class BOOK{
 			if(isempty(a.author))return ;
 			node y=author_index.find(a.author);
 			a.author=(String)(string)("");
-			for(int i=1;i<=author_index.top;i++){
-				book k=get(author_index.q[i].location);
+			for(int i=1;i<=Top;i++){
+				book k=get(Q[i].location);
 				if(cmp(k.ISBN,a.ISBN)==0){
-					author_index.erase_a_node(author_index.q[i]);
+					author_index.erase_a_node(Q[i]);
 					return ;
 				}
 			}
@@ -1080,10 +1078,10 @@ class BOOK{
 			if(isempty(a.name))return ;
 			node y=name_index.find(a.name);
 			a.name=(String)(string)("");
-			for(int i=1;i<=name_index.top;i++){
-				book k=get(name_index.q[i].location);
+			for(int i=1;i<=Top;i++){
+				book k=get(Q[i].location);
 				if(cmp(k.ISBN,a.ISBN)==0){
-					name_index.erase_a_node(name_index.q[i]);
+					name_index.erase_a_node(Q[i]);
 					return ;
 				}
 			}
@@ -1095,10 +1093,10 @@ class BOOK{
 				if(cmp(a.keyword[id],(String)(string)(""))==0)break;
 				keyword_index.find(a.keyword[id]);
 				a.keyword[id]=(String)(string)("");
-				for(int i=1;i<=keyword_index.top;i++){
-					book k=get(keyword_index.q[i].location);
+				for(int i=1;i<=Top;i++){
+					book k=get(Q[i].location);
 					if(cmp(k.ISBN,a.ISBN)==0){
-						keyword_index.erase_a_node(keyword_index.q[i]);
+						keyword_index.erase_a_node(Q[i]);
 						break;
 					}
 				}
@@ -1171,25 +1169,28 @@ class BOOK{
 	void show(book a){
 		if(a==unknownn){
 			ISBN_index.bianli();
-			for(int i=1;i<=ISBN_index.top;i++){
-				a=get(ISBN_index.q[i].value);
+			for(int i=1;i<=Top;i++){
+				a=get(Q[i].value);
 				a.display();
 			}
 		}
 		else {
+			int top=0;book* q=new book[3010];
 			if(a.ISBN_flag){
 				node b=ISBN_index.find(a.ISBN);
-				if(cmp(a.ISBN,b.key))return;
+				if(cmp(a.ISBN,b.key)){delete q;return;}
 				book c=get(b.value);
 				if(!checkbook(a,c))
 					c.display();
+				delete q;
 				return ;
 			}
+			
 			if(a.author_flag){
-				top=0;
+				
 				author_index.find(a.author);
-				for(int i=1;i<=author_index.top;i++){
-					node b=author_index.q[i];
+				for(int i=1;i<=Top;i++){
+					node b=Q[i];
 					book c=get(b.value);
 					if(!checkbook(c,a))q[++top]=c;
 				}
@@ -1198,13 +1199,14 @@ class BOOK{
 					if(q[i]!=q[i-1])
 						q[i].display();
 				}
+				delete q;
 				return ;
 			}
 			if(a.name_flag){
 				top=0;
 				name_index.find(a.name);
-				for(int i=1;i<=name_index.top;i++){
-					node b=name_index.q[i];
+				for(int i=1;i<=Top;i++){
+					node b=Q[i];
 					book c=get(b.value);
 					if(!checkbook(c,a))q[++top]=c;
 				}
@@ -1213,13 +1215,14 @@ class BOOK{
 					if(q[i]!=q[i-1])
 						q[i].display();
 				}
+				delete q;
 				return ;
 			}
 			top=0;
 			keyword_index.find(a.keyword[1]);
 			//printf("%s\n",a.keyword[1].s+1);
-			for(int i=1;i<=keyword_index.top;i++){
-				node b=keyword_index.q[i];
+			for(int i=1;i<=Top;i++){
+				node b=Q[i];
 				book c=get(b.value);
 				if(!checkbook(c,a))q[++top]=c;
 			}
@@ -1227,7 +1230,7 @@ class BOOK{
 			for(int i=1;i<=top;i++){
 				if(q[i]!=q[i-1]) 
 					q[i].display();
-			}
+			}delete q;
 			return ;
 		}
 	}
