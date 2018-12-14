@@ -583,7 +583,7 @@ class node{
 		printf("key:%s value:%d\n",key.s+1,value);
 	}
 };
-node Q[101];int Top;
+node Q[110];int Top;
 class BlockLinkList{
 	public:
 	string F;//鏉堟挸鍤弬鍥︽
