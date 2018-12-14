@@ -1280,11 +1280,10 @@ class BOOK{
 			
 			if(a.ISBN_flag){
 				node b=ISBN_index.find(a.ISBN);
-				if(cmp(a.ISBN,b.key)){delete q;return;}
+				if(cmp(a.ISBN,b.key)){return;}
 				book c=get(b.value);
 				if(!checkbook(a,c))
 					c.display();
-				delete q;
 				return ;
 			}
 			
