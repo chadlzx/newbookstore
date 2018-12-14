@@ -583,7 +583,7 @@ class node{
 		printf("key:%s value:%d\n",key.s+1,value);
 	}
 };
-node Q[10300];int Top;
+node Q[3050];int Top;
 class BlockLinkList{
 	public:
 	string F;//杈撳嚭鏂囦欢
@@ -1277,7 +1277,7 @@ class BOOK{
 			}
 		}
 		else {
-			int top=0;book* q=new book[3010];
+			int top=0;book* q=new book[1010];
 			if(a.ISBN_flag){
 				node b=ISBN_index.find(a.ISBN);
 				if(cmp(a.ISBN,b.key)){delete q;return;}
