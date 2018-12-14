@@ -2,68 +2,68 @@
 
 using namespace std;
 /*
-author: chad 柳志轿
+author: chad 鏌冲織杞?
 student id: 518030910426 
 class type: class A
 class id: F1803017
 */
 
 /*
-整体设计思路＿
-首先，两种模式如何处理：
-	先进行load，若存在command.txt,直接读取命令〿
-	若不存在，设置程序员界面和普通界面（用户友好）〿
-第一次启动，创建 user 文件，创建书目订单日志管理等文件，初始条数赋丿
-	user 新创廿root 用户友好）〿
-对于合法性上，每次输出Invalid\n
+鏁翠綋璁捐鎬濊矾锛?
+棣栧厛锛屼袱绉嶆ā寮忓浣曞鐞嗭細
+	鍏堣繘琛宭oad锛岃嫢瀛樺湪command.txt,鐩存帴璇诲彇鍛戒护銆?
+	鑻ヤ笉瀛樺湪锛岃缃▼搴忓憳鐣岄潰鍜屾櫘閫氱晫闈紙鐢ㄦ埛鍙嬪ソ锛夈€?
+绗竴娆″惎鍔紝鍒涘缓 user 鏂囦欢锛屽垱寤轰功鐩鍗曟棩蹇楃鐞嗙瓑鏂囦欢锛屽垵濮嬫潯鏁拌祴涓?
+	user 鏂板垱寤縭oot 鐢ㄦ埛鍙嬪ソ锛夈€?
+瀵逛簬鍚堟硶鎬т笂锛屾瘡娆¤緭鍑篒nvalid\n
 
-用户权限上，老板，员工，顾客，未登录 7310
+鐢ㄦ埛鏉冮檺涓婏紝鑰佹澘锛屽憳宸ワ紝椤惧锛屾湭鐧诲綍 7310
 
-load [file] #7 加载
-exit #0 退凿
-su [user] [passwd] #0 登录
-logout #1  变为未登彿
-useradd [user‐id] [passwd] [7/3/1] [name] #3：增加一个指定权限的用户，不能创建不小于自己权限的账房
-register [user‐id] [passwd] [name] #0：注册一个带有这些信息的权限1用户
-delete [user‐id] #7：删除某用户
-passwd [user‐id] [old‐passwd(if not root)] [new‐passwd] #1：root不需要填写旧密码，其余账户需覿
+load [file] #7 鍔犺浇
+exit #0 閫€鍑?
+su [user] [passwd] #0 鐧诲綍
+logout #1  鍙樹负鏈櫥褰?
+useradd [user鈥恑d] [passwd] [7/3/1] [name] #3锛氬鍔犱竴涓寚瀹氭潈闄愮殑鐢ㄦ埛锛屼笉鑳藉垱寤轰笉灏忎簬鑷繁鏉冮檺鐨勮处鎴?
+register [user鈥恑d] [passwd] [name] #0锛氭敞鍐屼竴涓甫鏈夎繖浜涗俊鎭殑鏉冮檺1鐢ㄦ埛
+delete [user鈥恑d] #7锛氬垹闄ゆ煇鐢ㄦ埛
+passwd [user鈥恑d] [old鈥恜asswd(if not root)] [new鈥恜asswd] #1锛歳oot涓嶉渶瑕佸～鍐欐棫瀵嗙爜锛屽叾浣欒处鎴烽渶瑕?
 
-[user-id] 咿[passwd] 包含连续无空格的数字字母下划线，不超迿0个字笿
-[name] 中不含空格，不超迿0个汉孿30个字芿
+[user-id] 鍜縖passwd] 鍖呭惈杩炵画鏃犵┖鏍肩殑鏁板瓧瀛楁瘝涓嬪垝绾匡紝涓嶈秴杩?涓瓧绗?
+[name] 涓笉鍚┖鏍硷紝涓嶈秴杩?涓眽瀛?0涓瓧鑺?
 
 select [ISBN]
-#3：选定ISBN为指定值的图书，若不存在则创建该ISBN的书并将其余信息留空等待modify进行填写
-modify ‐ISBN=[ISBN] ‐name=[name] ‐author=[author] ‐keyword=[keyword] ‐price=[price]
-#3：参数可省略，也不要求输入顺序，会更新（替换而非添加）上次选中的书至新的信恿
+#3锛氶€夊畾ISBN涓烘寚瀹氬€肩殑鍥句功锛岃嫢涓嶅瓨鍦ㄥ垯鍒涘缓璇SBN鐨勪功骞跺皢鍏朵綑淇℃伅鐣欑┖绛夊緟modify杩涜濉啓
+modify 鈥怚SBN=[ISBN] 鈥恘ame=[name] 鈥恆uthor=[author] 鈥恔eyword=[keyword] 鈥恜rice=[price]
+#3锛氬弬鏁板彲鐪佺暐锛屼篃涓嶈姹傝緭鍏ラ『搴忥紝浼氭洿鏂帮紙鏇挎崲鑰岄潪娣诲姞锛変笂娆￠€変腑鐨勪功鑷虫柊鐨勪俊鎭?
 import [quantity] [cost_price(in total)]
-#3：将上次选中的书以总共[cost_price]的价格进[quantity]朿
-show ‐ISBN=[ISBN] ‐name=[name] ‐author=[author] ‐keyword=[keyword]
-#1：参数可省略，也不要求输入顺序，将匹配的图书以ISBN号排序输出，需要注意该命令关键字项只支持单关键孿
+#3锛氬皢涓婃閫変腑鐨勪功浠ユ€诲叡[cost_price]鐨勪环鏍艰繘[quantity]鏈?
+show 鈥怚SBN=[ISBN] 鈥恘ame=[name] 鈥恆uthor=[author] 鈥恔eyword=[keyword]
+#1锛氬弬鏁板彲鐪佺暐锛屼篃涓嶈姹傝緭鍏ラ『搴忥紝灏嗗尮閰嶇殑鍥句功浠SBN鍙锋帓搴忚緭鍑猴紝闇€瑕佹敞鎰忚鍛戒护鍏抽敭瀛楅」鍙敮鎸佸崟鍏抽敭瀛?
 show finance [time]
-#7：time项省略时，输出总的收入与支出；否则输出近[time]次进货、卖出操作（分别算一次）的收入支出〿
-buy [ISBN] [quantity] #1：购买该ISBN号的图书[quantity]朿
+#7锛歵ime椤圭渷鐣ユ椂锛岃緭鍑烘€荤殑鏀跺叆涓庢敮鍑猴紱鍚﹀垯杈撳嚭杩慬time]娆¤繘璐с€佸崠鍑烘搷浣滐紙鍒嗗埆绠椾竴娆★級鐨勬敹鍏ユ敮鍑恒€?
+buy [ISBN] [quantity] #1锛氳喘涔拌ISBN鍙风殑鍥句功[quantity]鏈?
 
-[ISBN] 为不超过20位的连续字符丿
-[name] 咿[author] 被双引号包起来（不含双引号），保诿
-本身内容没有双引叿
-内容不超迿0个汉孿
-[keyword] 整体被双引号包起来（不含双引号），关键字之间 | (竖线)隔开，保诿
-每个关键字本身内容无引号以及空格
-内容总共不超迿0个汉孿
-[quantity] 为整数（<100000＿
-对于show操作，输出格式为：每行一本，所有信息项目间仿\t 隔开，价格保留两位，库存后加”本“字，如
+[ISBN] 涓轰笉瓒呰繃20浣嶇殑杩炵画瀛楃涓?
+[name] 鍜縖author] 琚弻寮曞彿鍖呰捣鏉ワ紙涓嶅惈鍙屽紩鍙凤級锛屼繚璇?
+鏈韩鍐呭娌℃湁鍙屽紩鍙?
+鍐呭涓嶈秴杩?涓眽瀛?
+[keyword] 鏁翠綋琚弻寮曞彿鍖呰捣鏉ワ紙涓嶅惈鍙屽紩鍙凤級锛屽叧閿瓧涔嬮棿 | (绔栫嚎)闅斿紑锛屼繚璇?
+姣忎釜鍏抽敭瀛楁湰韬唴瀹规棤寮曞彿浠ュ強绌烘牸
+鍐呭鎬诲叡涓嶈秴杩?涓眽瀛?
+[quantity] 涓烘暣鏁帮紙<100000锛?
+瀵逛簬show鎿嶄綔锛岃緭鍑烘牸寮忎负锛氭瘡琛屼竴鏈紝鎵€鏈変俊鎭」鐩棿浠縗t 闅斿紑锛屼环鏍间繚鐣欎袱浣嶏紝搴撳瓨鍚庡姞鈥濇湰鈥滃瓧锛屽
 
 
-report finance #7：会生成一张赏心悦目的财务报表，格式自宿
-report employee #7：会生成一张赏心悦目的员工工作情况表，记录其操作，格式自定
-log #7：会返回赏心悦目的日志记录，包括系统操作类的谁干了什么，以及财务上每一笔交易情况，格式自定
-report myself #3：返回员工自己的操作记录，格式自宿
+report finance #7锛氫細鐢熸垚涓€寮犺祻蹇冩偊鐩殑璐㈠姟鎶ヨ〃锛屾牸寮忚嚜瀹?
+report employee #7锛氫細鐢熸垚涓€寮犺祻蹇冩偊鐩殑鍛樺伐宸ヤ綔鎯呭喌琛紝璁板綍鍏舵搷浣滐紝鏍煎紡鑷畾
+log #7锛氫細杩斿洖璧忓績鎮︾洰鐨勬棩蹇楄褰曪紝鍖呮嫭绯荤粺鎿嶄綔绫荤殑璋佸共浜嗕粈涔堬紝浠ュ強璐㈠姟涓婃瘡涓€绗斾氦鏄撴儏鍐碉紝鏍煎紡鑷畾
+report myself #3锛氳繑鍥炲憳宸ヨ嚜宸辩殑鎿嶄綔璁板綍锛屾牸寮忚嚜瀹?
 */
 
 using namespace std;
 
-struct String{//一个新的定长string 
-	char s[30];
+struct String{//涓€涓柊鐨勫畾闀縮tring 
+	char s[35];
 	char& operator[](int b){return s[b];}
 	friend int cmp(String a,String b){
 		for(int i=1;;i++){
@@ -96,7 +96,7 @@ struct String{//一个新的定长string
 bool isempty(String& a){
 	return cmp(a,(String)(string)(""))==0;
 }
-//读入及其检柿
+//璇诲叆鍙婂叾妫€鏌?
 //initialization
 const int block=100;
 enum node_type{Begin=1,End,normal};
@@ -108,7 +108,7 @@ string TYPE_NAME[]={
 	"exit","su","logout","useradd","register","delete","passwd","select","modify","import","show","buy","report","log",
 	"report finance","report imployee","log","report myself"
 };
-bool check_empty(string s,int b){//检查从b位置开姿s是否为空丿
+bool check_empty(string s,int b){//妫€鏌ヤ粠b浣嶇疆寮€濮縮鏄惁涓虹┖涓?
 	for(int i=b;i<s.size();i++)if(s[i]!=' ')return 0;
 	return 1;
 }
@@ -130,7 +130,7 @@ class INPUT{
 	char passwd[35];
 	char name[35];
 	char old_passwd[35];
-	string keyword[35];
+	string keyword[10];
 	char ISBN[35];
 	char author[35];
 	int quantity,time;
@@ -524,7 +524,7 @@ class INPUT{
 				StringToChar(tmp,ISBN);
 				return BUY;
 			}
-			//暂时不需覿
+			//鏆傛椂涓嶉渶瑕?
 			else if(iden=="report"){
 				return REPORT_FINANCE;
 			}
@@ -539,7 +539,7 @@ class INPUT{
 
 
 
-bool check(string s){//判断是否需初始匿若空，则返回1，否刿
+bool check(string s){//鍒ゆ柇鏄惁闇€鍒濆鍖胯嫢绌猴紝鍒欒繑鍥?锛屽惁鍒?
 	ifstream it(s.c_str(),ios::in|ios::binary);
 	if(!it)return 1;
 	it.seekg(0,ios::end);
@@ -551,11 +551,11 @@ bool check(string s){//判断是否需初始匿若空，则返回1，否刿
 }
 class Bignode{
 	public:
-	node_type a;//类型
-	int node_number;//list的node数目
-	int next,prev;//前后块驱
-	int location;//所处文件位罿
-	int node_list_begin;//指向所属链表头
+	node_type a;//绫诲瀷
+	int node_number;//list鐨刵ode鏁扮洰
+	int next,prev;//鍓嶅悗鍧楅┍
+	int location;//鎵€澶勬枃浠朵綅缃?
+	int node_list_begin;//鎸囧悜鎵€灞為摼琛ㄥご
 	Bignode(){
 		a=normal;
 		node_number=0;
@@ -567,11 +567,11 @@ class Bignode{
 };
 class node{
 	public:
-	node_type a;//当前点的类型
-	String key;int value;//权值键倿
-	int next,prev;//前后驱的位置
-	int location;//当前所处文件位罿
-	int head;//所对应的bignode 的位罿
+	node_type a;//褰撳墠鐐圭殑绫诲瀷
+	String key;int value;//鏉冨€奸敭鍊?
+	int next,prev;//鍓嶅悗椹辩殑浣嶇疆
+	int location;//褰撳墠鎵€澶勬枃浠朵綅缃?
+	int head;//鎵€瀵瑰簲鐨刡ignode 鐨勪綅缃?
 	node(){
 		a=normal;
 		key=(String)(string)("");
@@ -586,10 +586,10 @@ class node{
 node Q[10300];int Top;
 class BlockLinkList{
 	public:
-	string F;//输出文件
+	string F;//杈撳嚭鏂囦欢
 	fstream file;
 	template<class T> 
-	T get(int location){//直接得到location位置的变
+	T get(int location){//鐩存帴寰楀埌location浣嶇疆鐨勫彉
 		file.open(F.c_str(),ios::binary|ios::in);
 		file.seekg(location);
 		T a;
@@ -597,13 +597,13 @@ class BlockLinkList{
 		file.close();
 		return a;
 	}
-	String get_begin_node(Bignode& h){//得到h的第一个key倿
+	String get_begin_node(Bignode& h){//寰楀埌h鐨勭涓€涓猭ey鍊?
 		node begin=get<node>(h.node_list_begin);
 		node first=get<node>(begin.next);
 		return first.key;
 	}
 	template<class T>
-	void updata(T& a){//更新文件
+	void updata(T& a){//鏇存柊鏂囦欢
 		file.open(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(a.location);
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
@@ -688,17 +688,17 @@ class BlockLinkList{
 		}
 	}
 	void split(Bignode& a){
-		/*	node_type a;//当前点的类型
-		String key;int value;//权值键倿
-		int next,prev;//前后驱的位置
-		int location;//当前所处文件位罿
+		/*	node_type a;//褰撳墠鐐圭殑绫诲瀷
+		String key;int value;//鏉冨€奸敭鍊?
+		int next,prev;//鍓嶅悗椹辩殑浣嶇疆
+		int location;//褰撳墠鎵€澶勬枃浠朵綅缃?
 		int head;*/
 		/*
-		node_type a;//类型
-		int node_number;//list的node数目
-		int next,prev;//前后块驱
-		int location;//所处文件位罿
-		int node_list_begin;//指向所属链表头
+		node_type a;//绫诲瀷
+		int node_number;//list鐨刵ode鏁扮洰
+		int next,prev;//鍓嶅悗鍧楅┍
+		int location;//鎵€澶勬枃浠朵綅缃?
+		int node_list_begin;//鎸囧悜鎵€灞為摼琛ㄥご
 		*/
 		
 		if(a.a!=normal)return ;
@@ -860,7 +860,7 @@ class BlockLinkList{
 
 //void found(String a,int value)
 //node find (String key)
-//块状链表
+//鍧楃姸閾捐〃
 
 
 
@@ -877,20 +877,20 @@ class user_node{
 	void display(){
 		printf("%s %s %s %d %d\n",user_id.s+1,name.s+1,passwd.s+1,pri,location);
 	}
-}unknown;//未登录用房
-class USER{//用户信息
+}unknown;//鏈櫥褰曠敤鎴?
+class USER{//鐢ㄦ埛淇℃伅
 	public:
 	string F;
 	fstream file;
-	user_node now;//当前用户
+	user_node now;//褰撳墠鐢ㄦ埛
 	template<class T>
-	void updata(T& a){//更新文件
+	void updata(T& a){//鏇存柊鏂囦欢
 		file.open(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(a.location);
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
 		file.close();
 	}
-	template<class T>//在文件尾创建一个新类型，并返回其位罿
+	template<class T>//鍦ㄦ枃浠跺熬鍒涘缓涓€涓柊绫诲瀷锛屽苟杩斿洖鍏朵綅缃?
 	void foundinend(T& a){
 		file.open(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(0,ios::end);
@@ -993,7 +993,7 @@ class LOG{
 		return k;
 	}
 	template<class T>
-	T get(int location){//直接得到location位置的变釿相对于最后的位置
+	T get(int location){//鐩存帴寰楀埌location浣嶇疆鐨勫彉閲跨浉瀵逛簬鏈€鍚庣殑浣嶇疆
 		file.open(F.c_str(),ios::in|ios::binary);
 		file.seekg(location);
 		T a;
@@ -1048,7 +1048,7 @@ class LOG{
 	}
 	
 	pair<double,double> 
-		find(int key){//找到最近key次的进货或者卖出操使
+		find(int key){//鎵惧埌鏈€杩慿ey娆＄殑杩涜揣鎴栬€呭崠鍑烘搷浣?
 		if(!key)key=sum;
 		int t=sum-key+1,kin=sum;
 		double income=0,pay=0;
@@ -1071,16 +1071,16 @@ class LOG{
 }LOG_it;
 
 
-class book{//书库基本单位
+class book{//涔﹀簱鍩烘湰鍗曚綅
 	public:
-	String ISBN,author,name,keyword[30];
-	int location;//记录其在文件中的位置
+	String ISBN,author,name,keyword[10];
+	int location;//璁板綍鍏跺湪鏂囦欢涓殑浣嶇疆
 	double price;
 	int quantity;
 	bool ISBN_flag,author_flag,name_flag,keyword_flag,price_flag;
 	book(){
 		ISBN=author=name=(String)(string)("");
-		for(int i=0;i<29;i++)keyword[i]=(String)(string)("");
+		for(int i=0;i<9;i++)keyword[i]=(String)(string)("");
 		location=price=quantity=0;
 	}
 	void display(){
@@ -1116,13 +1116,13 @@ class BOOK{
 	fstream file;
 	book now;bool select_flag;
 	template<class T>
-	void updata(T& a){//更新文件
+	void updata(T& a){//鏇存柊鏂囦欢
 		file.open(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(a.location);
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
 		file.close();
 	}
-	template<class T>//在文件尾创建一个新类型，并返回其位
+	template<class T>//鍦ㄦ枃浠跺熬鍒涘缓涓€涓柊绫诲瀷锛屽苟杩斿洖鍏朵綅
 	void foundinend(T& a){
 		file.open(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(0,ios::end);
@@ -1151,7 +1151,7 @@ class BOOK{
 		now=unknownn;
 		select_flag=0;
 	}
-	void erase(book& a,int flag){//删除一本书的索弿
+	void erase(book& a,int flag){//鍒犻櫎涓€鏈功鐨勭储寮?
 	
 		if(flag==0){
 			if(isempty(a.ISBN))return ;
@@ -1163,7 +1163,7 @@ class BOOK{
 		}
 		
 		
-		if(flag==1){//删除author
+		if(flag==1){//鍒犻櫎author
 			if(isempty(a.author))return ;
 			node y=author_index.find(a.author);
 			a.author=(String)(string)("");
@@ -1381,9 +1381,9 @@ void init(){
 		if(flag)getline(check_load,s);
 		else getline(cin,s);
 		//cout<<s<<endl;
-		if(sum==70){
-			sum=1;
-		}
+		//if(sum==70){
+		//	sum=1;
+		//}
 		if(s.size()==0){continue;}
 		INPUT a;
 		TYPE aaa=a.input(s);
