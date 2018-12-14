@@ -2,68 +2,68 @@
 
 using namespace std;
 /*
-author: chad 鏌冲織杞?
+author: chad 閺屽啿绻旀潪?
 student id: 518030910426 
 class type: class A
 class id: F1803017
 */
 
 /*
-鏁翠綋璁捐鎬濊矾锛?
-棣栧厛锛屼袱绉嶆ā寮忓浣曞鐞嗭細
-	鍏堣繘琛宭oad锛岃嫢瀛樺湪command.txt,鐩存帴璇诲彇鍛戒护銆?
-	鑻ヤ笉瀛樺湪锛岃缃▼搴忓憳鐣岄潰鍜屾櫘閫氱晫闈紙鐢ㄦ埛鍙嬪ソ锛夈€?
-绗竴娆″惎鍔紝鍒涘缓 user 鏂囦欢锛屽垱寤轰功鐩鍗曟棩蹇楃鐞嗙瓑鏂囦欢锛屽垵濮嬫潯鏁拌祴涓?
-	user 鏂板垱寤縭oot 鐢ㄦ埛鍙嬪ソ锛夈€?
-瀵逛簬鍚堟硶鎬т笂锛屾瘡娆¤緭鍑篒nvalid\n
+閺佺繝缍嬬拋鎹愵吀閹繆鐭鹃敍?
+妫ｆ牕鍘涢敍灞艰⒈缁夊秵膩瀵繐顩ф担鏇烆槱閻炲棴绱?
+	閸忓牐绻樼悰瀹璷ad閿涘矁瀚㈢€涙ê婀猚ommand.txt,閻╁瓨甯寸拠璇插絿閸涙垝鎶ら妴?
+	閼汇儰绗夌€涙ê婀敍宀冾啎缂冾喚鈻兼惔蹇撴喅閻ｅ矂娼伴崪灞炬珮闁氨鏅棃顫礄閻劍鍩涢崣瀣偨閿涘鈧?
+缁楊兛绔村▎鈥虫儙閸旑煉绱濋崚娑樼紦 user 閺傚洣娆㈤敍灞藉灡瀵よ桨鍔熼惄顔款吂閸楁洘妫╄箛妤冾吀閻炲棛鐡戦弬鍥︽閿涘苯鍨垫慨瀣蒋閺佹媽绁存稉?
+	user 閺傛澘鍨卞绺璷ot 閻劍鍩涢崣瀣偨閿涘鈧?
+鐎甸€涚艾閸氬牊纭堕幀褌绗傞敍灞剧槨濞喡ょ翻閸戠瘨nvalid\n
 
-鐢ㄦ埛鏉冮檺涓婏紝鑰佹澘锛屽憳宸ワ紝椤惧锛屾湭鐧诲綍 7310
+閻劍鍩涢弶鍐娑撳绱濋懓浣规緲閿涘苯鎲冲銉礉妞ゆ儳顓归敍灞炬弓閻ц缍?7310
 
-load [file] #7 鍔犺浇
-exit #0 閫€鍑?
-su [user] [passwd] #0 鐧诲綍
-logout #1  鍙樹负鏈櫥褰?
-useradd [user鈥恑d] [passwd] [7/3/1] [name] #3锛氬鍔犱竴涓寚瀹氭潈闄愮殑鐢ㄦ埛锛屼笉鑳藉垱寤轰笉灏忎簬鑷繁鏉冮檺鐨勮处鎴?
-register [user鈥恑d] [passwd] [name] #0锛氭敞鍐屼竴涓甫鏈夎繖浜涗俊鎭殑鏉冮檺1鐢ㄦ埛
-delete [user鈥恑d] #7锛氬垹闄ゆ煇鐢ㄦ埛
-passwd [user鈥恑d] [old鈥恜asswd(if not root)] [new鈥恜asswd] #1锛歳oot涓嶉渶瑕佸～鍐欐棫瀵嗙爜锛屽叾浣欒处鎴烽渶瑕?
+load [file] #7 閸旂姾娴?
+exit #0 闁偓閸?
+su [user] [passwd] #0 閻ц缍?
+logout #1  閸欐ü璐熼張顏嗘瑜?
+useradd [user閳ユ亼d] [passwd] [7/3/1] [name] #3閿涙艾顤冮崝鐘辩娑擃亝瀵氱€规碍娼堥梽鎰畱閻劍鍩涢敍灞肩瑝閼宠棄鍨卞杞扮瑝鐏忓繋绨懛顏勭箒閺夊啴妾洪惃鍕閹?
+register [user閳ユ亼d] [passwd] [name] #0閿涙碍鏁為崘灞肩娑擃亜鐢張澶庣箹娴滄稐淇婇幁顖滄畱閺夊啴妾?閻劍鍩?
+delete [user閳ユ亼d] #7閿涙艾鍨归梽銈嗙厙閻劍鍩?
+passwd [user閳ユ亼d] [old閳ユ仠asswd(if not root)] [new閳ユ仠asswd] #1閿涙oot娑撳秹娓剁憰浣革綖閸愭瑦妫€靛棛鐖滈敍灞藉従娴ｆ瑨澶勯幋鐑芥付鐟?
 
-[user-id] 鍜縖passwd] 鍖呭惈杩炵画鏃犵┖鏍肩殑鏁板瓧瀛楁瘝涓嬪垝绾匡紝涓嶈秴杩?涓瓧绗?
-[name] 涓笉鍚┖鏍硷紝涓嶈秴杩?涓眽瀛?0涓瓧鑺?
+[user-id] 閸滅笘passwd] 閸栧懎鎯堟潻鐐电敾閺冪姷鈹栭弽鑲╂畱閺佹澘鐡х€涙鐦濇稉瀣灊缁惧尅绱濇稉宥堢Т鏉?娑擃亜鐡х粭?
+[name] 娑擃厺绗夐崥顐も敄閺嶇》绱濇稉宥堢Т鏉?娑擃亝鐪界€?0娑擃亜鐡ч懞?
 
 select [ISBN]
-#3锛氶€夊畾ISBN涓烘寚瀹氬€肩殑鍥句功锛岃嫢涓嶅瓨鍦ㄥ垯鍒涘缓璇SBN鐨勪功骞跺皢鍏朵綑淇℃伅鐣欑┖绛夊緟modify杩涜濉啓
-modify 鈥怚SBN=[ISBN] 鈥恘ame=[name] 鈥恆uthor=[author] 鈥恔eyword=[keyword] 鈥恜rice=[price]
-#3锛氬弬鏁板彲鐪佺暐锛屼篃涓嶈姹傝緭鍏ラ『搴忥紝浼氭洿鏂帮紙鏇挎崲鑰岄潪娣诲姞锛変笂娆￠€変腑鐨勪功鑷虫柊鐨勪俊鎭?
+#3閿涙岸鈧鐣綢SBN娑撶儤瀵氱€规艾鈧偐娈戦崶鍙ュ姛閿涘矁瀚㈡稉宥呯摠閸︺劌鍨崚娑樼紦鐠囶檹SBN閻ㄥ嫪鍔熼獮璺虹殺閸忔湹缍戞穱鈩冧紖閻ｆ瑧鈹栫粵澶婄窡modify鏉╂稖顢戞繅顐㈠晸
+modify 閳ユ€歋BN=[ISBN] 閳ユ仒ame=[name] 閳ユ亞uthor=[author] 閳ユ仈eyword=[keyword] 閳ユ仠rice=[price]
+#3閿涙艾寮弫鏉垮讲閻胶鏆愰敍灞肩瘍娑撳秷顩﹀Ч鍌濈翻閸忋儵銆庢惔蹇ョ礉娴兼碍娲块弬甯礄閺囨寧宕查懓宀勬姜濞ｈ濮為敍澶夌瑐濞嗭繝鈧鑵戦惃鍕姛閼疯櫕鏌婇惃鍕繆閹?
 import [quantity] [cost_price(in total)]
-#3锛氬皢涓婃閫変腑鐨勪功浠ユ€诲叡[cost_price]鐨勪环鏍艰繘[quantity]鏈?
-show 鈥怚SBN=[ISBN] 鈥恘ame=[name] 鈥恆uthor=[author] 鈥恔eyword=[keyword]
-#1锛氬弬鏁板彲鐪佺暐锛屼篃涓嶈姹傝緭鍏ラ『搴忥紝灏嗗尮閰嶇殑鍥句功浠SBN鍙锋帓搴忚緭鍑猴紝闇€瑕佹敞鎰忚鍛戒护鍏抽敭瀛楅」鍙敮鎸佸崟鍏抽敭瀛?
+#3閿涙艾鐨㈡稉濠冾偧闁鑵戦惃鍕姛娴犮儲鈧鍙cost_price]閻ㄥ嫪鐜弽鑹扮箻[quantity]閺?
+show 閳ユ€歋BN=[ISBN] 閳ユ仒ame=[name] 閳ユ亞uthor=[author] 閳ユ仈eyword=[keyword]
+#1閿涙艾寮弫鏉垮讲閻胶鏆愰敍灞肩瘍娑撳秷顩﹀Ч鍌濈翻閸忋儵銆庢惔蹇ョ礉鐏忓棗灏柊宥囨畱閸ュ彞鍔熸禒顧廠BN閸欓攱甯撴惔蹇氱翻閸戠尨绱濋棁鈧憰浣规暈閹板繗顕氶崨鎴掓姢閸忔娊鏁€涙銆嶉崣顏呮暜閹镐礁宕熼崗鎶芥暛鐎?
 show finance [time]
-#7锛歵ime椤圭渷鐣ユ椂锛岃緭鍑烘€荤殑鏀跺叆涓庢敮鍑猴紱鍚﹀垯杈撳嚭杩慬time]娆¤繘璐с€佸崠鍑烘搷浣滐紙鍒嗗埆绠椾竴娆★級鐨勬敹鍏ユ敮鍑恒€?
-buy [ISBN] [quantity] #1锛氳喘涔拌ISBN鍙风殑鍥句功[quantity]鏈?
+#7閿涙ime妞ゅ湱娓烽悾銉︽閿涘矁绶崙鐑樷偓鑽ゆ畱閺€璺哄弳娑撳孩鏁崙鐚寸幢閸氾箑鍨潏鎾冲毉鏉╂叕time]濞喡ょ箻鐠愌佲偓浣稿礌閸戠儤鎼锋担婊愮礄閸掑棗鍩嗙粻妞剧濞嗏槄绱氶惃鍕暪閸忋儲鏁崙鎭掆偓?
+buy [ISBN] [quantity] #1閿涙俺鍠樻稊鎷岊嚉ISBN閸欓娈戦崶鍙ュ姛[quantity]閺?
 
-[ISBN] 涓轰笉瓒呰繃20浣嶇殑杩炵画瀛楃涓?
-[name] 鍜縖author] 琚弻寮曞彿鍖呰捣鏉ワ紙涓嶅惈鍙屽紩鍙凤級锛屼繚璇?
-鏈韩鍐呭娌℃湁鍙屽紩鍙?
-鍐呭涓嶈秴杩?涓眽瀛?
-[keyword] 鏁翠綋琚弻寮曞彿鍖呰捣鏉ワ紙涓嶅惈鍙屽紩鍙凤級锛屽叧閿瓧涔嬮棿 | (绔栫嚎)闅斿紑锛屼繚璇?
-姣忎釜鍏抽敭瀛楁湰韬唴瀹规棤寮曞彿浠ュ強绌烘牸
-鍐呭鎬诲叡涓嶈秴杩?涓眽瀛?
-[quantity] 涓烘暣鏁帮紙<100000锛?
-瀵逛簬show鎿嶄綔锛岃緭鍑烘牸寮忎负锛氭瘡琛屼竴鏈紝鎵€鏈変俊鎭」鐩棿浠縗t 闅斿紑锛屼环鏍间繚鐣欎袱浣嶏紝搴撳瓨鍚庡姞鈥濇湰鈥滃瓧锛屽
+[ISBN] 娑撹桨绗夌搾鍛扮箖20娴ｅ秶娈戞潻鐐电敾鐎涙顑佹稉?
+[name] 閸滅笘author] 鐞氼偄寮诲鏇炲娇閸栧懓鎹ｉ弶銉礄娑撳秴鎯堥崣灞界穿閸欏嚖绱氶敍灞肩箽鐠?
+閺堫剝闊╅崘鍛啇濞屸剝婀侀崣灞界穿閸?
+閸愬懎顔愭稉宥堢Т鏉?娑擃亝鐪界€?
+[keyword] 閺佺繝缍嬬悮顐㈠蓟瀵洖褰块崠鍛版崳閺夈儻绱欐稉宥呮儓閸欏苯绱╅崣鍑ょ礆閿涘苯鍙ч柨顔肩摟娑斿妫?| (缁旀牜鍤?闂呮柨绱戦敍灞肩箽鐠?
+濮ｅ繋閲滈崗鎶芥暛鐎涙婀伴煬顐㈠敶鐎硅妫ゅ鏇炲娇娴犮儱寮风粚鐑樼壐
+閸愬懎顔愰幀璇插彙娑撳秷绉存潻?娑擃亝鐪界€?
+[quantity] 娑撶儤鏆ｉ弫甯礄<100000閿?
+鐎甸€涚艾show閹垮秳缍旈敍宀冪翻閸戠儤鐗稿蹇庤礋閿涙碍鐦＄悰灞肩閺堫剨绱濋幍鈧張澶変繆閹垶銆嶉惄顕€妫挎禒绺梩 闂呮柨绱戦敍灞肩幆閺嶉棿绻氶悾娆庤⒈娴ｅ稄绱濇惔鎾崇摠閸氬骸濮為垾婵囨拱閳ユ粌鐡ч敍灞筋洤
 
 
-report finance #7锛氫細鐢熸垚涓€寮犺祻蹇冩偊鐩殑璐㈠姟鎶ヨ〃锛屾牸寮忚嚜瀹?
-report employee #7锛氫細鐢熸垚涓€寮犺祻蹇冩偊鐩殑鍛樺伐宸ヤ綔鎯呭喌琛紝璁板綍鍏舵搷浣滐紝鏍煎紡鑷畾
-log #7锛氫細杩斿洖璧忓績鎮︾洰鐨勬棩蹇楄褰曪紝鍖呮嫭绯荤粺鎿嶄綔绫荤殑璋佸共浜嗕粈涔堬紝浠ュ強璐㈠姟涓婃瘡涓€绗斾氦鏄撴儏鍐碉紝鏍煎紡鑷畾
-report myself #3锛氳繑鍥炲憳宸ヨ嚜宸辩殑鎿嶄綔璁板綍锛屾牸寮忚嚜瀹?
+report finance #7閿涙矮绱伴悽鐔稿灇娑撯偓瀵姾绁昏箛鍐╁亰閻╊喚娈戠拹銏犲閹躲儴銆冮敍灞剧壐瀵繗鍤滅€?
+report employee #7閿涙矮绱伴悽鐔稿灇娑撯偓瀵姾绁昏箛鍐╁亰閻╊喚娈戦崨妯轰紣瀹搞儰缍旈幆鍛枌鐞涱煉绱濈拋鏉跨秿閸忚埖鎼锋担婊愮礉閺嶇厧绱￠懛顏勭暰
+log #7閿涙矮绱版潻鏂挎礀鐠у繐绺鹃幃锔炬窗閻ㄥ嫭妫╄箛妤勵唶瑜版洩绱濋崠鍛缁崵绮洪幙宥勭稊缁崵娈戠拫浣稿叡娴滃棔绮堟稊鍫礉娴犮儱寮风拹銏犲娑撳﹥鐦℃稉鈧粭鏂炬唉閺勬挻鍎忛崘纰夌礉閺嶇厧绱￠懛顏勭暰
+report myself #3閿涙俺绻戦崶鐐叉喅瀹搞儴鍤滃杈╂畱閹垮秳缍旂拋鏉跨秿閿涘本鐗稿蹇氬殰鐎?
 */
 
 using namespace std;
 
-struct String{//涓€涓柊鐨勫畾闀縮tring 
-	char s[35];
+struct String{//娑撯偓娑擃亝鏌婇惃鍕暰闂€绺畉ring 
+	char s[32];
 	char& operator[](int b){return s[b];}
 	friend int cmp(String a,String b){
 		for(int i=1;;i++){
@@ -96,7 +96,7 @@ struct String{//涓€涓柊鐨勫畾闀縮tring
 bool isempty(String& a){
 	return cmp(a,(String)(string)(""))==0;
 }
-//璇诲叆鍙婂叾妫€鏌?
+//鐠囪鍙嗛崣濠傚従濡偓閺?
 //initialization
 const int block=100;
 enum node_type{Begin=1,End,normal};
@@ -108,7 +108,7 @@ string TYPE_NAME[]={
 	"exit","su","logout","useradd","register","delete","passwd","select","modify","import","show","buy","report","log",
 	"report finance","report imployee","log","report myself"
 };
-bool check_empty(string s,int b){//妫€鏌ヤ粠b浣嶇疆寮€濮縮鏄惁涓虹┖涓?
+bool check_empty(string s,int b){//濡偓閺屻儰绮燽娴ｅ秶鐤嗗鈧慨绺弰顖氭儊娑撹櫣鈹栨稉?
 	for(int i=b;i<s.size();i++)if(s[i]!=' ')return 0;
 	return 1;
 }
@@ -126,13 +126,13 @@ int StringToInterger(string s){
 }
 class INPUT{
 	public:
-	char user_id[35];
-	char passwd[35];
+	char user_id[20];
+	char passwd[20];
 	char name[35];
-	char old_passwd[35];
-	string keyword[10];
-	char ISBN[35];
-	char author[35];
+	char old_passwd[20];
+	string keyword[5];
+	char ISBN[20];
+	char author[22];
 	int quantity,time;
 	double price,cost_price;
 	int permission;
@@ -524,7 +524,7 @@ class INPUT{
 				StringToChar(tmp,ISBN);
 				return BUY;
 			}
-			//鏆傛椂涓嶉渶瑕?
+			//閺嗗倹妞傛稉宥夋付鐟?
 			else if(iden=="report"){
 				return REPORT_FINANCE;
 			}
@@ -539,7 +539,7 @@ class INPUT{
 
 
 
-bool check(string s){//鍒ゆ柇鏄惁闇€鍒濆鍖胯嫢绌猴紝鍒欒繑鍥?锛屽惁鍒?
+bool check(string s){//閸掋倖鏌囬弰顖氭儊闂団偓閸掓繂顫愰崠鑳缁岀尨绱濋崚娆掔箲閸?閿涘苯鎯侀崚?
 	ifstream it(s.c_str(),ios::in|ios::binary);
 	if(!it)return 1;
 	it.seekg(0,ios::end);
@@ -551,11 +551,11 @@ bool check(string s){//鍒ゆ柇鏄惁闇€鍒濆鍖胯嫢绌猴紝鍒欒
 }
 class Bignode{
 	public:
-	node_type a;//绫诲瀷
-	int node_number;//list鐨刵ode鏁扮洰
-	int next,prev;//鍓嶅悗鍧楅┍
-	int location;//鎵€澶勬枃浠朵綅缃?
-	int node_list_begin;//鎸囧悜鎵€灞為摼琛ㄥご
+	node_type a;//缁鐎?
+	int node_number;//list閻ㄥ埖ode閺佹壆娲?
+	int next,prev;//閸撳秴鎮楅崸妤呪攳
+	int location;//閹碘偓婢跺嫭鏋冩禒鏈电秴缂?
+	int node_list_begin;//閹稿洤鎮滈幍鈧仦鐐烘懠鐞涖劌銇?
 	Bignode(){
 		a=normal;
 		node_number=0;
@@ -567,11 +567,11 @@ class Bignode{
 };
 class node{
 	public:
-	node_type a;//褰撳墠鐐圭殑绫诲瀷
-	String key;int value;//鏉冨€奸敭鍊?
-	int next,prev;//鍓嶅悗椹辩殑浣嶇疆
-	int location;//褰撳墠鎵€澶勬枃浠朵綅缃?
-	int head;//鎵€瀵瑰簲鐨刡ignode 鐨勪綅缃?
+	node_type a;//瑜版挸澧犻悙鍦畱缁鐎?
+	String key;int value;//閺夊啫鈧ジ鏁崐?
+	int next,prev;//閸撳秴鎮楁す杈╂畱娴ｅ秶鐤?
+	int location;//瑜版挸澧犻幍鈧径鍕瀮娴犳湹缍呯純?
+	int head;//閹碘偓鐎电懓绨查惃鍒gnode 閻ㄥ嫪缍呯純?
 	node(){
 		a=normal;
 		key=(String)(string)("");
@@ -586,10 +586,10 @@ class node{
 node Q[10100];int Top;
 class BlockLinkList{
 	public:
-	string F;//杈撳嚭鏂囦欢
+	string F;//鏉堟挸鍤弬鍥︽
 	fstream file;
 	template<class T> 
-	T get(int location){//鐩存帴寰楀埌location浣嶇疆鐨勫彉
+	T get(int location){//閻╁瓨甯村妤€鍩宭ocation娴ｅ秶鐤嗛惃鍕綁
 		file.open(F.c_str(),ios::binary|ios::in);
 		file.seekg(location);
 		T a;
@@ -597,13 +597,13 @@ class BlockLinkList{
 		file.close();
 		return a;
 	}
-	String get_begin_node(Bignode& h){//寰楀埌h鐨勭涓€涓猭ey鍊?
+	String get_begin_node(Bignode& h){//瀵版鍩宧閻ㄥ嫮顑囨稉鈧稉鐚璭y閸?
 		node begin=get<node>(h.node_list_begin);
 		node first=get<node>(begin.next);
 		return first.key;
 	}
 	template<class T>
-	void updata(T& a){//鏇存柊鏂囦欢
+	void updata(T& a){//閺囧瓨鏌婇弬鍥︽
 		file.open(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(a.location);
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
@@ -688,17 +688,17 @@ class BlockLinkList{
 		}
 	}
 	void split(Bignode& a){
-		/*	node_type a;//褰撳墠鐐圭殑绫诲瀷
-		String key;int value;//鏉冨€奸敭鍊?
-		int next,prev;//鍓嶅悗椹辩殑浣嶇疆
-		int location;//褰撳墠鎵€澶勬枃浠朵綅缃?
+		/*	node_type a;//瑜版挸澧犻悙鍦畱缁鐎?
+		String key;int value;//閺夊啫鈧ジ鏁崐?
+		int next,prev;//閸撳秴鎮楁す杈╂畱娴ｅ秶鐤?
+		int location;//瑜版挸澧犻幍鈧径鍕瀮娴犳湹缍呯純?
 		int head;*/
 		/*
-		node_type a;//绫诲瀷
-		int node_number;//list鐨刵ode鏁扮洰
-		int next,prev;//鍓嶅悗鍧楅┍
-		int location;//鎵€澶勬枃浠朵綅缃?
-		int node_list_begin;//鎸囧悜鎵€灞為摼琛ㄥご
+		node_type a;//缁鐎?
+		int node_number;//list閻ㄥ埖ode閺佹壆娲?
+		int next,prev;//閸撳秴鎮楅崸妤呪攳
+		int location;//閹碘偓婢跺嫭鏋冩禒鏈电秴缂?
+		int node_list_begin;//閹稿洤鎮滈幍鈧仦鐐烘懠鐞涖劌銇?
 		*/
 		
 		if(a.a!=normal)return ;
@@ -860,7 +860,7 @@ class BlockLinkList{
 
 //void found(String a,int value)
 //node find (String key)
-//鍧楃姸閾捐〃
+//閸ф濮搁柧鎹愩€?
 
 
 
@@ -877,20 +877,20 @@ class user_node{
 	void display(){
 		printf("%s %s %s %d %d\n",user_id.s+1,name.s+1,passwd.s+1,pri,location);
 	}
-}unknown;//鏈櫥褰曠敤鎴?
-class USER{//鐢ㄦ埛淇℃伅
+}unknown;//閺堫亞娅ヨぐ鏇犳暏閹?
+class USER{//閻劍鍩涙穱鈩冧紖
 	public:
 	string F;
 	fstream file;
-	user_node now;//褰撳墠鐢ㄦ埛
+	user_node now;//瑜版挸澧犻悽銊﹀煕
 	template<class T>
-	void updata(T& a){//鏇存柊鏂囦欢
+	void updata(T& a){//閺囧瓨鏌婇弬鍥︽
 		file.open(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(a.location);
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
 		file.close();
 	}
-	template<class T>//鍦ㄦ枃浠跺熬鍒涘缓涓€涓柊绫诲瀷锛屽苟杩斿洖鍏朵綅缃?
+	template<class T>//閸︺劍鏋冩禒璺虹啲閸掓稑缂撴稉鈧稉顏呮煀缁鐎烽敍灞借嫙鏉╂柨娲栭崗鏈电秴缂?
 	void foundinend(T& a){
 		file.open(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(0,ios::end);
@@ -993,7 +993,7 @@ class LOG{
 		return k;
 	}
 	template<class T>
-	T get(int location){//鐩存帴寰楀埌location浣嶇疆鐨勫彉閲跨浉瀵逛簬鏈€鍚庣殑浣嶇疆
+	T get(int location){//閻╁瓨甯村妤€鍩宭ocation娴ｅ秶鐤嗛惃鍕綁闁茶法娴夌€甸€涚艾閺堚偓閸氬海娈戞担宥囩枂
 		file.open(F.c_str(),ios::in|ios::binary);
 		file.seekg(location);
 		T a;
@@ -1048,7 +1048,7 @@ class LOG{
 	}
 	
 	pair<double,double> 
-		find(int key){//鎵惧埌鏈€杩慿ey娆＄殑杩涜揣鎴栬€呭崠鍑烘搷浣?
+		find(int key){//閹垫儳鍩岄張鈧潻鎱縠y濞嗭紕娈戞潻娑滄彛閹存牞鈧懎宕犻崙鐑樻惙娴?
 		if(!key)key=sum;
 		int t=sum-key+1,kin=sum;
 		double income=0,pay=0;
@@ -1071,10 +1071,10 @@ class LOG{
 }LOG_it;
 
 
-class book{//涔﹀簱鍩烘湰鍗曚綅
+class book{//娑旓箑绨遍崺鐑樻拱閸楁洑缍?
 	public:
 	String ISBN,author,name,keyword[10];
-	int location;//璁板綍鍏跺湪鏂囦欢涓殑浣嶇疆
+	int location;//鐠佹澘缍嶉崗璺烘躬閺傚洣娆㈡稉顓犳畱娴ｅ秶鐤?
 	double price;
 	int quantity;
 	bool ISBN_flag,author_flag,name_flag,keyword_flag,price_flag;
@@ -1116,13 +1116,13 @@ class BOOK{
 	fstream file;
 	book now;bool select_flag;
 	template<class T>
-	void updata(T& a){//鏇存柊鏂囦欢
+	void updata(T& a){//閺囧瓨鏌婇弬鍥︽
 		file.open(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(a.location);
 		file.write(reinterpret_cast<const char *> (&a),sizeof(a));
 		file.close();
 	}
-	template<class T>//鍦ㄦ枃浠跺熬鍒涘缓涓€涓柊绫诲瀷锛屽苟杩斿洖鍏朵綅
+	template<class T>//閸︺劍鏋冩禒璺虹啲閸掓稑缂撴稉鈧稉顏呮煀缁鐎烽敍灞借嫙鏉╂柨娲栭崗鏈电秴
 	void foundinend(T& a){
 		file.open(F.c_str(),ios::in|ios::out|ios::binary);
 		file.seekp(0,ios::end);
@@ -1151,7 +1151,7 @@ class BOOK{
 		now=unknownn;
 		select_flag=0;
 	}
-	void erase(book& a,int flag){//鍒犻櫎涓€鏈功鐨勭储寮?
+	void erase(book& a,int flag){//閸掔娀娅庢稉鈧張顑垮姛閻ㄥ嫮鍌ㄥ?
 	
 		if(flag==0){
 			if(isempty(a.ISBN))return ;
@@ -1163,7 +1163,7 @@ class BOOK{
 		}
 		
 		
-		if(flag==1){//鍒犻櫎author
+		if(flag==1){//閸掔娀娅巃uthor
 			if(isempty(a.author))return ;
 			node y=author_index.find(a.author);
 			a.author=(String)(string)("");
