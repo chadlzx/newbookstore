@@ -996,7 +996,7 @@ class book{//书库基本单位
 		}
 		printf("\t%.2lf\t",price);
 		char ss[4]={-26,-100,-24,'\0'};
-		printf("%d��\n",quantity,ss);
+		printf("%d本\n",quantity,ss);
 	}
 	bool operator!=(book& c){
 		if(cmp(ISBN,c.ISBN)||cmp(author,c.author)||cmp(name,c.name)||cmp(keyword[1],c.keyword[1]))return 1;
