@@ -98,7 +98,7 @@ bool isempty(String& a){
 }
 //闁荤姴娲╅褔宕ｉ崱娑樼煑濠电姴鍊稿鎾翠繆椤愮喎浜鹃梺?
 //initialization
-const int block=200;
+const int block=70;
 enum node_type{Begin=1,End,normal};
 enum TYPE{
 	EXIT=1,SU,logout,USERADD,REGISTER,DELETE,PASSWD,SELECT,MODIFY,IMPORT,SHOW,SHOW_FINANCE,BUY,
