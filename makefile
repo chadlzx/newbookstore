@@ -1,2 +1,2 @@
 code: Basic.cpp
-	g++ -g Basic.cpp -o code -std=c++17
+	g++ Basic.cpp -o code -std=c++17 -O2

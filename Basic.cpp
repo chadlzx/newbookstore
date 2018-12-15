@@ -579,7 +579,7 @@ class node{
 		printf("key:%s value:%d\n",key.s+1,value);
 	}
 };
-node Q[100];int Top;
+node Q[11000];int Top;
 class BlockLinkList{
 	public:
 	string F;//閺夊牊鎸搁崵顓㈠棘閸ワ附顐?
@@ -1108,7 +1108,7 @@ class book{//濞戞棑绠戠花閬嶅春閻戞ɑ鎷遍柛妤佹磻缂?
 	bool operator==(book& c){
 		return !(*this!=c);
 	}
-}unknownn,q[100];int top=0;
+}unknownn,q[11000];int top=0;
 bool cmp2(book& a,book& b){return cmp(a.ISBN,b.ISBN)==-1;}
 BlockLinkList author_index,ISBN_index,name_index,keyword_index;
 
