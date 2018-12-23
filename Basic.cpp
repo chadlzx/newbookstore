@@ -1055,7 +1055,7 @@ class book{//濠电姷鏁搁崑鐐哄垂鐠轰綍娑㈠箣閻樺吀绗夐梺鐟�
 			}
 		}
 		printf("\t%.2lf\t",price);
-		printf("%d��\n",quantity);
+		printf("%d本\n",quantity);
 	}
 	bool operator!=(book& c){
 		if(cmp(ISBN,c.ISBN)||cmp(author,c.author)||cmp(name,c.name)||cmp(keyword[1],c.keyword[1]))return 1;
