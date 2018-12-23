@@ -63,7 +63,7 @@ report myself #3闂傚倸鍊烽悞锔锯偓绗涘懐鐭欓柟鐑樻尵閳瑰秹�
 using namespace std;
 const long long mod=233333333333;
 struct String{//濠电姷鏁搁崑鐐哄垂閸洖绠伴柟缁㈠枛绾惧鏌熼悙顒佺伇婵℃彃鐗撻弻鐔煎垂椤斿吋娈ㄧ紓浣靛妼閵堟悂寮婚敍鍕勃闁哄倶鍊涢崥顐︽⒑鐠団€崇仩闁哥喐娼欓悾鐑芥偄绾拌鲸鏅濋梺闈涚墕濡瑩鎯侀悙鐑樷拻闁稿本鑹鹃埀顒傛暬瀹曟垿骞橀崜浣猴紲闂佹儳绻楅～澶娾枍閹插攨ng 
-	char s[35];
+	char s[25];
 	char& operator[](int b){return s[b];}
 	friend int cmp(String& a,String& b){//cmp add a &
 		for(int i=1;;i++){
@@ -98,7 +98,7 @@ bool isempty(String& a){
 }
 //闂傚倷娴囧畷鍨叏閺夋嚚娲煛閸滀焦鏅悷婊勬煥閻ｇ兘鏁愭径濠傝€垮┑鐐村灦椤洭鎮￠幋鐐电瘈闁汇垽娼у瓭闂佺锕﹂…鍫ヮ敋閵夆晛绠荤紓鍫㈠Х缁犳艾顪冮妶鍡楀闁哥姴瀛╃粋宥嗐偅閸愨斁鎷?
 //initialization
-const int block=100;
+const int block=70;
 enum node_type{Begin=1,End,normal};
 enum TYPE{
 	EXIT=1,SU,logout,USERADD,REGISTER,DELETE,PASSWD,SELECT,MODIFY,IMPORT,SHOW,SHOW_FINANCE,BUY,
