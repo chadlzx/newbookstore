@@ -98,7 +98,7 @@ bool isempty(String& a){
 }
 //闂備浇宕垫慨鏉懨洪埡鍜佹晪鐟滄柨鐣烽敐澶婂耿婵炴垶顭囬悡鎴炵節閻㈤潧孝闁稿﹦顭堥銉╁箻缂堢姷绠氬銈嗗姉閸犲孩绂嶆ィ鍐┾拺?
 //initialization
-const int block=70;
+const int block=100;
 enum node_type{Begin=1,End,normal};
 enum TYPE{
 	EXIT=1,SU,logout,USERADD,REGISTER,DELETE,PASSWD,SELECT,MODIFY,IMPORT,SHOW,SHOW_FINANCE,BUY,
@@ -764,8 +764,7 @@ class BlockLinkList{
 		Bignode x=get<Bignode>(0);
 		x=get<Bignode>(x.next);
 		while(x.a!=End){
-			if(x.node_number>2*block)
-				split(x);
+			
 			x=get<Bignode>(x.next);
 		}
 	}
@@ -849,7 +848,7 @@ class BlockLinkList{
 		Bignode c=get<Bignode>(y.head);
 		c.node_number++;
 		updata(c);
-		updata();
+		if(c.node_number>2*block)split(c);
 	}
 	
 	void display(){
